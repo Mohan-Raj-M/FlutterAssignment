@@ -8,179 +8,149 @@ class DashboardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        child: Column(children: [
-          SizedBox(
-            height: 36,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Image.asset(
-                    "assets/images/user.png",
-                    scale: 3.6,
+    
+     return Scaffold(
+  appBar: AppBar(
+    title: const Text('Home'),
+    backgroundColor: Color(0xff23AA49),
+  ),
+  body: SingleChildScrollView(
+          child: Column(children: [
+            SizedBox(
+              height: 6,
+            ),
+           
+            SizedBox(
+              height: 16,
+            ),
+            Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: Color(0xffF3F5F7),
+                      borderRadius: BorderRadius.all(Radius.circular(24))),
+                  child: TextField(
+                      textAlignVertical: TextAlignVertical.center,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: "Search Category",
+                        hintStyle: TextStyle(
+                            fontSize: 14,
+                            color: Color(0xff979899),
+                            fontWeight: FontWeight.w500),
+                        contentPadding: EdgeInsets.all(16),
+                        prefixIcon: Icon(
+                          CupertinoIcons.search,
+                          color: Color(0xff23AA49),
+                        ),
+                      )),
+                )),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Image.asset(
+                "assets/images/banner.png",
+                scale: 4.0,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                children: [
+                  _seeAllView(context, "Categories"),
+                  SizedBox(
+                    height: 24,
                   ),
-                ),
-                Expanded(
-                    flex: 3,
-                    child: Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 8),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Good morning",
-                            style: TextStyle(
-                                color: Color(0xff979899),
-                                fontSize: 12,
-                                fontWeight: FontWeight.w500),
-                          ),
-                          SizedBox(
-                            height: 4,
-                          ),
-                          Text(
-                            "Swetha R",
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600),
-                          ),
-                        ],
-                      ),
-                    )),
-                Expanded(
-                    flex: 2,
-                    child: InkWell(
-                        onTap: () {
-                          Navigator.pushNamed(
-                              context, MyRoutes.welcomeRoute);
-                        
-                        },
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 30, vertical: 8),
-                          decoration: BoxDecoration(
-                              color: Color(0xffF3F5F7),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(24))),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Icon(
-                                CupertinoIcons.power,
-                                color: Color(0xff23AA49),
-                                size: 16,
-                              ),
-                              Text(
-                                "Logout",
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w600),
-                              )
-                              // ),
-                              // Icon(
-                              //   CupertinoIcons.chevron_down,
-                              //   color: Color(0xff23AA49),
-                              //   size: 12,
-                              // )
-                            ],
-                          ),
-                        ))),
-              ],
-            ),
-          ),
-          SizedBox(
-            height: 16,
-          ),
-          Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Container(
-                decoration: BoxDecoration(
-                    color: Color(0xffF3F5F7),
-                    borderRadius: BorderRadius.all(Radius.circular(24))),
-                child: TextField(
-                    textAlignVertical: TextAlignVertical.center,
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: "Search Category",
-                      hintStyle: TextStyle(
-                          fontSize: 14,
-                          color: Color(0xff979899),
-                          fontWeight: FontWeight.w500),
-                      contentPadding: EdgeInsets.all(16),
-                      prefixIcon: Icon(
-                        CupertinoIcons.search,
-                        color: Color(0xff23AA49),
-                      ),
-                    )),
-              )),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Image.asset(
-              "assets/images/banner.png",
-              scale: 4.0,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              children: [
-                _seeAllView(context, "Categories"),
-                SizedBox(
-                  height: 24,
-                ),
-                Row(
-                  children: [
-                    _categoriesView("assets/images/fruits.png", "Fruits"),
-                    _categoriesView(
-                        "assets/images/vegetables.png", "Vegetables"),
-                    _categoriesView("assets/images/diary.png", "Diary"),
-                    _categoriesView("assets/images/meat.png", "Meat")
-                  ],
-                ),
-                SizedBox(
-                  height: 32,
-                ),
-                _seeAllView(context, "Best Selling"),
-                SizedBox(
-                  height: 24,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      child: VegetableCardWidget(
-                        imagePath: "assets/images/bell_pepper_red.png",
-                        name: "Bell Pepper Red",
-                        price: "1kg, 4\$",
-                        onTapCallback: () {
-                          Navigator.pushNamed(
-                              context, MyRoutes.vegetableDetailRoute);
-                        },
-                      ),
-                    ),
-                    Expanded(
-                      child: VegetableCardWidget(
-                          imagePath: "assets/images/lamb_meat.png",
+                  Row(
+                    children: [
+                      _categoriesView("assets/images/fruits.png", "Fruits"),
+                      _categoriesView(
+                          "assets/images/vegetables.png", "Vegetables"),
+                      _categoriesView("assets/images/diary.png", "Diary"),
+                      _categoriesView("assets/images/meat.png", "Meat")
+                    ],
+                  ),
+                  SizedBox(
+                    height: 32,
+                  ),
+                  _seeAllView(context, "Best Selling"),
+                  SizedBox(
+                    height: 24,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        child: VegetableCardWidget(
+                          imagePath: "assets/images/bell_pepper_red.png",
                           name: "Bell Pepper Red",
                           price: "1kg, 4\$",
-                          onTapCallback: () {}),
-                    ),
-                  ],
-                )
-              ],
+                          onTapCallback: () {
+                            Navigator.pushNamed(
+                                context, MyRoutes.vegetableDetailRoute);
+                          },
+                        ),
+                      ),
+                      Expanded(
+                        child: VegetableCardWidget(
+                            imagePath: "assets/images/lamb_meat.png",
+                            name: "Bell Pepper Red",
+                            price: "1kg, 4\$",
+                            onTapCallback: () {}),
+                      ),
+                    ],
+                  )
+                ],
+              ),
             ),
-          ),
-        ]),
-      ),
+          ]),
+        ),
+      
+  drawer: Drawer(
+    child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            const UserAccountsDrawerHeader(
+              currentAccountPicture: CircleAvatar(
+                backgroundImage: NetworkImage(
+                    'https://images.unsplash.com/photo-1485290334039-a3c69043e517?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTYyOTU3NDE0MQ&ixlib=rb-1.2.1&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=300'),
+              ),
+              accountEmail: Text('swethar@kaartech.com'),
+              accountName: Text(
+                'Swetha R',
+                style: TextStyle(fontSize: 24.0),
+              ),
+              decoration: BoxDecoration(
+                color: Color(0xff23AA49),
+              ),
+            ),
+        ListTile(
+          leading: Icon(Icons.home),
+          title: Text('Home'),
+          
+        ),
+        ListTile(
+          leading: Icon(Icons.shopping_cart),
+          title: Text('Cart'),
+          onTap: () {
+                Navigator.pushNamed(
+                                context, MyRoutes.cartRoute);
+                        
+              },
+        ),
+        ListTile(
+          leading: Icon(Icons.logout),
+          title: Text('Logout'),
+          onTap: () {
+                Navigator.pushNamed(
+                                context, MyRoutes.welcomeRoute);
+                        
+              },
+        )
+      ],
+    ),
+  ),
+
     );
   }
 
